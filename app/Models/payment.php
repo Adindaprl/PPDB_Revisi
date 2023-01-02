@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class payment extends Model
 {
     use HasFactory;
+    protected $fillable =[
+        'ppdb_id',
+        'nm_bank',
+        'nm_rek',
+        'nominal',
+        'image',
+        'status',
+    ];
 }

@@ -15,6 +15,14 @@ return new class extends Migration
     {
         Schema::create('ppdbs', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->integer('nisn');
+            $table->string('asalSekolah');
+            $table->string('jenisKelamin');
+            $table->string('nomor');
+            $table->string('noIbu');
+            $table->string('noAyah');
             $table->timestamps();
         });
     }
