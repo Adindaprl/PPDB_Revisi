@@ -22,11 +22,13 @@ Route::get('/daftar',[PpdbController::class, 'daftar'])->name('daftar');
 Route::post('/daftar/input', [PpdbController::class, 'daftarAccount'])->name('daftar.input');
 Route::get('/pdf',[PpdbController::class, 'pdf'])->name('pdf');
 
-Route::get('/login',[PpdbController::class,'login']);
+Route::get('/login',[PpdbController::class,'login'])->name('login');
 Route::post('/login/auth',[PpdbController::class,'auth'])->name('login.auth');
 
-Route::get('/dashboard',[PpdbController::class,'dashboard'])->name('finance.dashboard');
+Route::get('/dashboard',[PaymentController::class,'dashboard'])->name('finance.dashboard');
 Route::get('/createPayment', [PaymentController::class,'createPayment'])->name('createPayment');
 Route::post('/pembayaran', [PaymentController::class, 'store'])->name('payment');
+
+Route::get('/logout', [PpdbController::class, 'logout'])->name('logout');
 
 

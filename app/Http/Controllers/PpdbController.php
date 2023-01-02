@@ -69,22 +69,34 @@ class PpdbController extends Controller
         return view('ppdb.login');
     }
 
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('login');
+    }
+
     public function auth(Request $request)
     {
-        // dd($request->all());
         $request->validate([
+            //required data harus diisi
             'email' => 'required|exists:users,email',
             'password' => 'required',
-        ], [
-            'email.exists' => 'email ini belum tersedia',
-            'email.required' => 'email harus diisi',
-            'password.required' => 'password harus diisi',
+            
+        ],
+        [
+            'email.exists' => "email ini tidak tersedia"
+            //email akan di cek ada atau tidak di database kalau tidak ada akan diberi pesan
         ]);
-       $user = $request->only('email', 'password');
+
+        $user = $request->only('email', 'password');
+        //auth fitur untuk men
         if (Auth::attempt($user)) {
-            return redirect()->route('finance.dashboard');
+           if(Auth::user()->role == 'user'){
+               return redirect()->route('finance.dashboard');
+           }else{
+               return redirect()->route('finance.dashboard');
+           }
         } else {
-            return redirect()->back()->with('error', 'Gagal login silahkan cek dan coba lagi');
+            return redirect('/')->with('fail', 'Gagal login, silahkan periksa dan coba lagi!');
         }
     }
 

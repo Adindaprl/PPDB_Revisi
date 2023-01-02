@@ -1,4 +1,4 @@
-@extends('sidebar')
+@extends('layout.sidebar')
 @section('sdbar')
 <div id="sidebar">
   <header>
@@ -32,7 +32,7 @@
         <img src="{{asset('/assets/img/profile.png')}}"  style="width:40px;margin-left:70%" alt="">
         <div class="dropdown">
           <button class="mt-1" style="border:none;background-color:transparent;color:white;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            {{Auth::user()->nama}}
+            {{-- {{Auth::user()->name}} --}}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
             <li><a class="dropdown-item" type="button" href="/login" >Logout</a></li>
@@ -41,7 +41,7 @@
       </div>
       <div class="card1 d-flex" style="border: none">
           <div class="card-body" style="width: 18rem;">
-                  <h4>Hi, {{Auth::user()->nama}}</h4>
+                  {{-- <h4>Hi, {{Auth::user()->name}}</h4> --}}
                   <p> Silakan upload bukti pembayaran anda pada form berikut!</p>
           </div>
     </div>
