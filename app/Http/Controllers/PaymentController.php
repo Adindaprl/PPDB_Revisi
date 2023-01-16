@@ -13,30 +13,55 @@ class PaymentController extends Controller
     public function dashboard()
     {
         $user= Auth::user();
-        // $bayar= Payment::where('ppdb_id', Auth::user()->ppdb_id)->first();
         return view('finance.dashboard', compact('user'));
     }
     
     public function createPayment()
     {
         $bayar= Payment::where('ppdb_id', Auth::user()->ppdb_id)->first();
-        return view('pembayaran', compact('bayar'));
+        return view('finance.pembayaran', compact('bayar'));
+    } 
+
+    public function admindash()
+    {
+        return view('admin.admindash');
     }
 
-    // public function adminDashboard()
-    // {
-    //     return view('admin.dashboard');
-    // }
+    public function verifikasi(){
+        $payment = Payment::all();
+        return view('admin.verifikasi', compact('payment'));
+    }
 
-    // public function adminPembayaran()
-    // {
-    //     return view('admin.pembayaran');
-    // }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function bukti($id){
+        $payment = Payment::find($id);
+        return view('admin.bukti', compact('payment'));
+    }
+
+    public function detail($id){
+        $ppdb = Ppdb::find($id);
+        return view('admin.detail', compact('ppdb'));
+    }
+
+    public function rejected($id){
+        Payment::where('id', '=', $id)->update([
+            'status' => 'Ditolak',
+        ]);
+        Ppdb::where('ppdb_id', '=', $id)->update([
+            'status' => 'Ditolak',
+        ]);
+        return redirect()->back();
+    }
+
+    public function accepted($id){
+        Payment::where('id', '=', $id)->update([
+            'status' => 'Diterima',
+        ]);
+        Ppdb::where('ppdb_id', '=', $id)->update([
+            'status' => 'Diterima'
+        ]);
+        return redirect();
+    }
+
     public function index()
     {
         //
@@ -88,7 +113,7 @@ class PaymentController extends Controller
             'status' => 'Diproses',
             'ppdb_id' => Auth::user()->ppdb_id,
          ]);
-         return redirect()->route('createPayment')->with('Success', 'Bukti Pembayaran Anda sedang di proses');
+         return redirect()->route('createPayment');
     }
 
     /**
@@ -120,9 +145,37 @@ class PaymentController extends Controller
      * @param  \App\Models\payment  $payment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, payment $payment)
+    public function update(Request $request, Payment $payment)
     {
-        //
+        $request->validate([
+            'nm_bank' => 'required',
+            'nm_rek' => 'required',
+            'nominal' => 'required',
+            'image' => 'required|image|mimes:png,jpg,jpeg,gif,svg',
+        ]);
+
+        $image = $request->file('image');
+        $imgName = time().rand().'.'.$image->extension();
+
+        if(!file_exists(public_path('/assets/img/bukti/'.$image->getClientOriginalName()))){
+            //set untuk menyimpan file nya
+            $dPath = public_path('/assets/img/bukti/');
+            //memindahkan file yang diupload ke directory yang telah ditentukan
+            $image->move($dPath, $imgName);
+            $uploaded = $imgName;
+        }else{
+            $uploaded = $image->getClientOriginalName();
+        }
+        Payment::create([
+            'nm_bank' => $request->nm_bank,
+            'nm_rek' => $request->nm_rek,
+            'nominal' => $request->nominal,
+            'image' => $uploaded,
+            'status' => 'Ditolak',
+            'ppdb_id' => Auth::user()->ppdb_id,
+         ]);
+         return redirect()->route('updatePayment');
+
     }
 
     /**

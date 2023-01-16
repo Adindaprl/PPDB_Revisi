@@ -2,7 +2,7 @@
 @section('sdbar')
 <div id="sidebar">
     <header>
-      <a >PPDB 2023-2024</a>
+      <a href="#">PPDB 2023-2024</a>
     </header>
     <ul class="nav">
        <li>
@@ -10,7 +10,7 @@
               <div class="cardsb">
                   <div class="card-body">
                       <img style="width:30px" src="{{asset('/assets/img/home.png')}}" alt="">
-                      <a href="/dashboard">
+                      <a href="/admindash">
                           <i></i> Dashboard
                         </a>
                   </div>
@@ -18,7 +18,7 @@
               <div class="cardsb">
                   <div class="card-body">
                       <img style="width:30px" src="{{asset('/assets/img/payment.png')}}" alt="">
-                      <a href="/createPayment">
+                      <a href="/verifikasi">
                           <i></i> Pembayaran
                         </a>
                   </div>
@@ -39,16 +39,38 @@
                 </ul>
               </div>
             </div>
-            @if (Session::get('notAllowed'))
-            <div class="alert alert-danger w-100">
-               {{ Session::get('notAllowed') }}
-            </div>  
-         @endif
     <div class="card1 d-flex bg-light " style="border: none">
         <div class="card-body" style="width: 18rem;">
                 <h4>Hi, {{Auth::user()->name}}</h4>
                 <p> Selamat Datang di dashboard!</p>
          </div>
 </div>
+
+<div class="card">
+    <div class="detail">
+        <div class="mt-5 mb-5">
+            <ul>
+                <li>
+                    <p class="fw-bold">No.Registrasi : <span class="fw-normal">{{$ppdb->id}}</span></p>
+                </li>
+                <li>
+                    <p class="fw-bold">Nama : <span class="fw-normal">{{$ppdb->name}}</span></p>
+                </li>
+                <li>
+                    <p class="fw-bold">NISN : <span class="fw-normal">{{$ppdb->nisn}}</span></p>
+                </li>
+                <li>
+                    <p class="fw-bold">Asal Sekolah : <span class="fw-normal">{{$ppdb->asalSekolah}}</span></p>
+                </li>
+                <li>
+                    <p class="fw-bold">Email : <span class="fw-normal">{{$ppdb->email}}</span></p>
+                </li>
+                <li>
+                    <p class="fw-bold">Nomor Telephone : <span class="fw-normal">{{$ppdb->nomor}}</span></p>
+                </li>
+            </ul>
+            <a href="{{route('verifikasi')}}" class="btn-back">BACK</a>
+        </div>
+    </div>
 </div>
 @endsection

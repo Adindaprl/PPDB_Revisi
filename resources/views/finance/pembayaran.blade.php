@@ -32,31 +32,43 @@
         <img src="{{asset('/assets/img/profile.png')}}"  style="width:40px;margin-left:70%" alt="">
         <div class="dropdown">
           <button class="mt-1" style="border:none;background-color:transparent;color:white;" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-            {{-- {{Auth::user()->name}} --}}
+            {{Auth::user()->name}}
           </button>
           <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-            <li><a class="dropdown-item" type="button" href="/login" >Logout</a></li>
+            <li><a class="dropdown-item" type="button" href="/logout" >Logout</a></li>
           </ul>
         </div>
       </div>
       <div class="card1 d-flex" style="border: none">
           <div class="card-body" style="width: 18rem;">
-                  {{-- <h4>Hi, {{Auth::user()->name}}</h4> --}}
+                  <h4>Hi, {{Auth::user()->name}}</h4>
                   <p> Silakan upload bukti pembayaran anda pada form berikut!</p>
           </div>
     </div>
-    <div class="card">
-      <div class="card-pembayaran">
-        @if ($errors->any())
-<div class="alert alert-danger">
+<div class="card">
+<div class="card-pembayaran">
+     @if ($errors->any())
+    <div class="alert alert-danger">
     <ul>
-        @foreach ($errors->all() as $error)
-            <li>{{ $error }}</li>
-        @endforeach
+    @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+    @endforeach
     </ul>
-</div>
-@endif
+    </div>
+    @endif
 
+    @if (Session::get('notAllowed'))
+    <div class="alert alert-danger w-100">
+   {{ Session::get('notAllowed') }}
+    </div>  
+    @endif
+    
+    @if (session('results'))
+    <div class="alert alert-success">
+        {{ session('results') }}
+    </div>
+    @endif
+    
 @if(is_null($bayar))
         <form method="post" enctype="multipart/form-data" action="{{route('payment')}}">
           @csrf
@@ -88,6 +100,9 @@
           <button type="submit" class="btn-pem">Upload Bukti Pembayaran</button>
         </form>
         @elseif ($bayar['status'] == 'Ditolak')
+        <div class="alert alert-primary w-100">
+          Pembayaran Anda ditolak, periksa kembali bukti!
+       </div>
         <form method="post" enctype="multipart/form-data" action="{{route('createPayment')}}">
           @csrf
           @method('PATCH')

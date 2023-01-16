@@ -3,7 +3,12 @@
 <form action="/daftar">
     @csrf
     <div class="home">
-        <div class="cardhome">
+        @if (Session::get('notAllowed'))
+        <div class="alert alert-danger w-100">
+           {{ Session::get('notAllowed') }}
+        </div>  
+     @endif
+        <div class="cardhome" id="home">
                 <div class="t1">
                     <h1>PPDB TP 2023-2024</h1>
                     <h1>SMK Wikrama Bogor</h1>
@@ -26,7 +31,7 @@
             </div>
           </div>
            {{-- Jurusan --}}
-              <div class="jurusan">
+              <div class="jurusan" id="jurusan">
                 <h2>MAJOR COMPETITY</h2>
                 <div class="rombel d-flex">
                     <center>
@@ -35,7 +40,7 @@
                           <h5 class="card-header">M P L B</h5>
                           <div class="card-body">
                             <h6 class="card-title">Manajemen Perkantoran dan Layanan Bisnis</h6>
-                              <img src="{{asset('/assets/img/mmd.jpg')}}" class="card-img-top" alt="...">
+                              <img src="{{asset('/assets/img/mplb.jpg')}}" class="card-img-top" alt="...">
                               <p class="card-text">Fast typing with 10-finger technique (250 EPM 98%), manage office documents and archives, handle phones, manage finances and handle guests.</p>
                             </div>
                           </div>
@@ -43,7 +48,7 @@
                           <h5 class="card-header">P M N</h5>
                           <div class="card-body">
                             <h6 class="card-title">Pemasaran</h6>
-                              <img src="{{asset('/assets/img/mmd.jpg')}}" class="card-img-top" alt="...">
+                              <img src="{{asset('/assets/img/pmn.jpg')}}" class="card-img-top" alt="...">
                               <p class="card-text">Portfolio, creative content, website, communication, telemarketing and marketing communications.</p>
                             </div>
                           </div>
@@ -59,7 +64,7 @@
                           <h5 class="card-header">K L N</h5>
                           <div class="card-body">
                             <h6 class="card-title">Kuliner</h6>
-                              <img src="{{asset('/assets/img/mmd.jpg')}}" class="card-img-top" alt="...">
+                              <img src="{{asset('/assets/img/tbg.jpg')}}" class="card-img-top" alt="...">
                               <p class="card-text">Tourism, ingredient processing, serving and storage, assessing the nutritional content, sanitation, hygiene and safety of the food served, processing various types of dishes.</p>
                             </div>
                           </div>
@@ -95,8 +100,49 @@
           </div>
     </div>
 </form>
+
+<div class="card-testimoni" id="testimoni">
+<center>
+  <h2>TESTIMONY</h2>
+</center>
+</div>
+<div class="testimoni">
+  <div class="card-tes">
+    <div class="card-header" style="background:linear-gradient(to right,  #d6a833, #686ec3);color:white">
+      Testimony
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>My girlfriend (Adinda) so senangn't to be here.</p>
+        <footer class="blockquote-footer">Louis Partridge</footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="card-tes">
+    <div class="card-header" style="background:linear-gradient(to right,  #d6a833, #686ec3);color:white">
+      Testimony
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>Great for future school for my baby Stormi.</p>
+        <footer class="blockquote-footer">kylie Kristen Jenner</footer>
+      </blockquote>
+    </div>
+  </div>
+  <div class="card-tes">
+    <div class="card-header" style="background:linear-gradient(to right,  #d6a833, #686ec3);color:white">
+      Testimony
+    </div>
+    <div class="card-body">
+      <blockquote class="blockquote mb-0">
+        <p>私はここで多くのことを学びます.</p>
+        <footer class="blockquote-footer">Neji Hyuga</footer>
+      </blockquote>
+    </div>
+  </div>
+</div>
 {{-- contact person --}}
-<div class="contact">
+<div class="contact" id="contact">
     <h1 class="cp mb-5" style="text-align:center">Hubungi Kami</h1>
      <form action="/daftar">
         @csrf

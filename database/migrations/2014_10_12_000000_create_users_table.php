@@ -14,9 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('ppdb_id')->nullable();
             $table->string('name');
-            $table->string('email');
+            $table->string('email')->unique();
             $table->string('password');
             $table->enum('role', ['user', 'admin']);
             $table->timestamps();

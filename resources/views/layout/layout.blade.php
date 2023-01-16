@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PPDB-WIKRAMA</title>
+    <link rel="shortcut icon" href="{{asset('/assets/img/icon.png')}}">
     <link rel="stylesheet" href="{{asset('/assets/css/style.css')}}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
@@ -13,9 +14,16 @@
 </head>
 <body>
     <center>
-    <nav class="navbar navbar-light bg-light">
-        <div class="container-fluid">
-          <span class="navbar-brand mb-0 h1">Navbar</span>
+    <nav class="navbar navbar-light bg-light fixed-top" style="margin-left:5% ">
+        <div class="container">
+          <img class="nav-img" src="{{asset('/assets/img/logo.png')}}" alt="">
+          <div class="item">
+          <a href="#home" class="nav-item">Home</a>
+          <a href="#jurusan" class="nav-item">Mayor</a>
+          <a href="#contact" class="nav-item">Contact</a>
+          <a href="#testimoni" class="nav-item">Testimony</a>
+          <a href="{{route('login')}}" class="nav-item">Login</a>
+        </div>
         </div>
       </nav>
     </center>

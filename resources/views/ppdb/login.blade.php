@@ -1,5 +1,5 @@
-@extends('layout.layout')
-@section('content')
+@extends('layout.input')
+@section('input')
 <div class="login">
   <div class="card-log-1">
     <img class="img-log" src="{{asset('/assets/img/login.jpg')}}" alt="">

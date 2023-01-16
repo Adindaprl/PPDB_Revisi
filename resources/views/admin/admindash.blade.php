@@ -2,7 +2,7 @@
 @section('sdbar')
 <div id="sidebar">
     <header>
-      <a >PPDB 2023-2024</a>
+      <a href="#">PPDB 2023-2024</a>
     </header>
     <ul class="nav">
        <li>
@@ -10,7 +10,7 @@
               <div class="cardsb">
                   <div class="card-body">
                       <img style="width:30px" src="{{asset('/assets/img/home.png')}}" alt="">
-                      <a href="/dashboard">
+                      <a href="/admindash">
                           <i></i> Dashboard
                         </a>
                   </div>
@@ -18,7 +18,7 @@
               <div class="cardsb">
                   <div class="card-body">
                       <img style="width:30px" src="{{asset('/assets/img/payment.png')}}" alt="">
-                      <a href="/createPayment">
+                      <a href="/verifikasi">
                           <i></i> Pembayaran
                         </a>
                   </div>
@@ -39,11 +39,6 @@
                 </ul>
               </div>
             </div>
-            @if (Session::get('notAllowed'))
-            <div class="alert alert-danger w-100">
-               {{ Session::get('notAllowed') }}
-            </div>  
-         @endif
     <div class="card1 d-flex bg-light " style="border: none">
         <div class="card-body" style="width: 18rem;">
                 <h4>Hi, {{Auth::user()->name}}</h4>

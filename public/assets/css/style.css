@@ -7,6 +7,7 @@ body{
 .home{
     padding: 0 5% 0 5%;
 }
+
 /* navbar */
 .navbar{
      margin-top: 20px;
@@ -14,13 +15,29 @@ body{
      height: 60px;
      width: 90%;
 }
+
+.nav-img{
+    width: 40px;
+}
+
+.nav-item{
+    text-decoration: none;
+    color: #d29a38;
+    margin-left: 7%;
+}
+
+.item{
+    width: 50%;
+}
 /* login */
 .login{
+    margin: 7% 14% 7% 14%;
     display: flex;
-    width: 100%;
+    width:6 0%;
     background-size: cover;
     background-color: white;
-    padding: 8% 5% 5% 5%;
+    padding: 7% 5% 7% 5%;
+    border-radius: 20px;
 }
 
 .img-log{
@@ -36,17 +53,16 @@ body{
     padding-top: 5%;
     width: 50%;
 }
-
 .btn-log{
     border: none;
     width: 50%;
     padding: 2% 2% 2% 2%;
     border-radius: 30px;
-    background: linear-gradient(to right,  #adadad, #161717);
+    background: linear-gradient(to right,  #d6a833, #2632d2);
     color: white;
 
 }
-/* home */
+/*  HOME */
 .t1{
     height: auto;
     padding-top: 15%;
@@ -81,9 +97,10 @@ body{
 }
 
 
-/* jurusan */
+/*  JURUSAN   */
 .jurusan{
     width: 50%;
+    margin-top: 7%;
 }
 .card{
     margin: 2% 2% 2% 0%;
@@ -91,12 +108,7 @@ body{
     width: 23rem;
 }
 
-/* form daftar */
-/* .daftar-form{
-    
-	background: linear-gradient(to right,  #63b56e, #67a4d0);
-} */
-
+/*  DAFTAR  */
 .daftar{
     background-color: white;
     width: 50%;
@@ -112,6 +124,19 @@ body{
     width: 20%;
     padding: 10px 10px;
 }
+
+/* testimoni */
+.testimoni{
+    margin-left: 15%;
+    display: flex;
+}
+
+.card-tes{
+    margin: 2% 2% 2% 0%;
+    box-shadow: 0 10px 10px rgba(83, 81, 81, 0.22);
+    width: 18rem;
+}
+
 /* contact person */
 .contact{
     background-color: rgb(26, 45, 61);
@@ -161,7 +186,6 @@ p:hover{
     color: white;
 }
 
-/* logo */
 .logo{ 
     padding: 5% 7% 8% 10%;
     width: 27%;
@@ -172,4 +196,15 @@ p:hover{
 	width: 40px;
     background-color: #d29a38;
     border-radius: 30px;
+}
+
+/* error */
+.btn-error{
+    border: none;
+    background-color:white;
+    width:20%;
+    padding:1% 0 1% 0;
+    border-radius:20px;
+    text-decoration: none;
+    color: black;
 }
